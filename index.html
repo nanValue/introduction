@@ -1,0 +1,582 @@
+<!DOCTYPE HTML>
+<html lang = "zh-Hant">
+
+    <head>
+
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width,initial-scale=1.0">
+
+        <style>
+
+            :root {
+
+                --bc: black;
+                --nav_height: 80px;
+                
+            }
+
+            body {
+
+                margin: 0 auto;
+                background-color: var(--bc);
+            }
+
+            span, button {
+
+                color: rgb(255, 255, 0);
+                font-size: 30px;
+                text-shadow: 0 0 50px rgb(255, 255, 140),0 0 150px rgb(255, 255, 140),0 0 20px rgb(255, 255, 140);
+            }
+
+            nav .here, nav button:hover {
+
+                border-bottom: 1px yellow solid;
+                border-right: 1px yellow solid;
+                border-top: 1px black solid;
+                border-left: 1px black solid;
+                animation: dd 0.1s steps(2) 0s 2;
+            }
+
+            .aniy {
+
+                animation: neon_yellow 5s ease-out infinite;
+            }
+
+            button {
+
+                border: 0;
+                background-color: var(--bc);
+                padding: 8px 0;
+                vertical-align: middle;
+                box-sizing: border-box;
+
+                display: inline-block;
+            }
+
+            nav div {
+
+                border: 0px;
+                border-bottom: 1px solid #ff0;
+
+                height: var(--nav_height);
+                width: 80%;
+            }
+
+            .width_1 {
+
+                width: 160px;
+            }
+
+            .flex {
+
+                display: flex;
+            }
+
+            .fceter {
+
+                justify-content: center;
+                align-items: center;
+            }
+
+            .fstart {
+
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .main_person_grid {
+
+                display: grid;
+
+                margin: 20px calc(20% / 2);
+
+                grid-template-areas: "IMG INFORMATION"
+                                     "IMG LINK";
+                grid-template-rows: calc(100% - 85px) 85px;
+                grid-template-columns: 1fr 1fr;
+
+                height: calc(100vh - var(--nav_height) - 40px - 2px);
+
+                --cut-length: 30px;
+                --base-margin: 0 5px;
+                --imag-clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut-length)), calc(100% - var(--cut-length)) 100%, 0 100%);
+
+                .images_outer {
+
+                    display: flex;
+
+                    justify-content: center;
+                    align-items: center;
+                    
+                    margin: var(--base-margin);
+
+                    grid-area: IMG;
+                    -webkit-clip-path: var(--imag-clip-path);
+                    clip-path: var(--imag-clip-path);
+                    background: #ff0;
+
+                    .images {
+                        
+                        
+                        width: calc(100% - 10px);
+                        height: calc(100% - 10px);
+                        
+                        -webkit-clip-path: var(--imag-clip-path);
+                        clip-path: var(--imag-clip-path);
+                        background: black;
+                        box-sizing: border-box;
+
+                        margin: 20px 0;
+
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+
+                        overflow-y: auto;
+
+                        img {
+
+                            width: 80%;
+                        }
+
+                        &::-webkit-scrollbar-thumb {
+
+                            background: #f0f;
+                        }
+
+                        &::-webkit-scrollbar-track {
+
+                            background: #0f0;
+                        }
+
+                        &::-webkit-scrollbar {
+
+                            max-width: 2px;
+                            max-height: 2px;
+                        }
+                    }
+                }
+
+                .information {
+
+                    margin: var(--base-margin);
+
+                    grid-area: INFORMATION;
+
+                    box-sizing: border-box;
+
+                    border: 5px yellow solid;
+                    overflow-y: auto;
+
+                    &::-webkit-scrollbar-thumb {
+
+                        background: #f0f;
+                    }
+
+                    &::-webkit-scrollbar-track {
+
+                        background: #0f0;
+                    }
+
+                    &::-webkit-scrollbar {
+
+                        max-width: 2px;
+                        max-height: 2px;
+                    }
+
+                    pre {
+
+                        margin: 2rem 2rem;
+
+                        width: auto;
+                        height: inherit;
+
+                        color: #ff0;
+                        font-family: Consolas, Arial, Helvetica, sans-serif;
+
+                        font-size: 24px;
+
+                        white-space: pre-wrap;
+                    }
+                }
+
+                .links {
+
+                    margin: var(--base-margin);
+                    margin-top: 5px;
+
+                    grid-area: LINK;
+
+                    box-sizing: border-box;
+
+                    border: 5px yellow solid;
+
+                    & > div {
+
+                        height: 100%;
+                    }
+
+                    .links_button {
+
+                        border: 1px rgb(255, 255, 0) solid;
+                        box-sizing: border-box;
+                        flex-basis: 50px;
+
+                        height: 100%;
+                        aspect-ratio: 1;
+
+                        text-align: center;
+                        align-content: center;
+
+                        opacity: 1;
+
+                        &:hover {
+
+                            animation: dd 0.1s steps(2) 0s 2;
+                        }
+
+                        &:active {
+
+                            opacity: 0.2;
+                        }
+
+                        button {
+
+                            padding: 100%;
+                            margin: 0;
+                        }
+                    }
+
+                    .links_link {
+
+                        width: 100%;
+
+                        a {
+
+                            color: #0F0;
+                            overflow-wrap: anywhere;
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+
+            @media (max-width: 600px) {
+
+                .main_person_grid {
+
+                    --base-margin: 5px 0px;
+
+                    display: grid;
+
+                    grid-template-areas: "IMG" "INFORMATION" "LINK";
+                    grid-template-rows: 300px calc(100% - 85px - 300px) 85px;
+                    grid-template-columns: 1fr;
+
+                    .images {
+                        
+                        width: calc(100svw - 10px);
+                    }
+
+                    .links .links_link a{
+
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            @keyframes neon_yellow {
+
+                0% {
+
+                    color: rgb(255, 255, 0);
+                    text-shadow: 0 0 50px rgb(255, 255, 140),0 0 150px rgb(255, 255, 140),0 0 20px rgb(255, 255, 140);
+                }
+
+                50% {
+
+                    color: rgb(100, 100, 0);
+                    text-shadow: 0 0 20px rgb(20, 20, 14000),0 0 50px rgb(20, 20, 0),0 0 5px rgb(20, 20, 0);
+                }
+
+                100% {
+
+                    color: rgb(255, 255, 0);
+                    text-shadow: 0 0 50px rgb(255, 255, 140),0 0 150px rgb(255, 255, 140),0 0 20px rgb(255, 255, 140);
+                }
+            }
+
+            @keyframes dd {
+
+                0% {
+
+                    border-color: transparent;
+                }
+
+                1% {
+
+                    border-color: black #ff0 #ff0 black;
+                }
+
+                50% {
+
+                    border-color: black #ff0 #ff0 black;
+                }
+
+                51% {
+
+                    border-color: transparent;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <nav class = "flex fceter">
+
+            <div class = "flex fstart">
+
+                <button class = "width_1 aniy here" tabindex="-1"> 首頁 </button>
+                <button class = "width_1 aniy"  tabindex="-1"> 各種作品 </button>
+            </div>
+        </nav>
+        <main>
+
+            <div class = "main_person_grid" id = "Introduction">
+
+                <div class = "images_outer">
+
+                    <div class = "images">
+
+                    </div>
+                </div>
+
+                <div class = "information">
+
+                </div>
+
+                <div class = "links">
+
+                    <div class = "flex fceter"> 
+                        <button class = "links_button" id = "Introduction_link_left"> ← </button>
+                        <div class = "links_link" id = "Introduction_link"> </div>
+                        <button class = "links_button" id = "Introduction_link_right"> → </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+
+            class IntroductionDataController {
+
+                constructor(rootID,parent) {
+
+                    if (this.rootcontainer !== null && parent === null) {return} 
+
+                    this.rootcontainer = document.getElementById(rootID);
+
+                    if (this.rootcontainer === null) {
+
+                        this.rootcontainer = document.createElement("div");
+
+                        this.rootcontainer.classList.add(main_person_grid);
+                        this.rootcontainer.id = rootID;
+
+                        this.rootcontainer.innerHTML = `<div class = "images_outer">
+
+        <div class = "images">
+
+        </div>
+    </div>
+
+    <div class = "information">
+
+    </div>
+
+    <div class = "links">
+
+        <div class = "flex fceter"> 
+            <button class = "links_button" id = "Introduction_link_left"> ← </button>
+            <div class = "links_link" id = "Introduction_link"> </div>
+            <button class = "links_button" id = "Introduction_link_right"> → </button>
+        </div>
+    </div>
+</div>`;
+
+                        parent.appendChild(this.rootcontainer);
+                    }
+
+                    this.image_urlArray = [];
+                    this.descriptArray = [];
+                    this.linkArray = [];
+
+                    this.index = 0;
+
+                    let noneselectcss = `-webkit-touch-callout: none; 
+                        -webkit-user-select: none;
+                        -khtml-user-select: none;
+                        -moz-user-select: none;
+                            -ms-user-select: none;
+                                user-select: none;`;
+
+                    this.rootcontainer.querySelector("#Introduction_link_left").setAttribute("style", noneselectcss);
+                    this.rootcontainer.querySelector("#Introduction_link_right").setAttribute("style", noneselectcss);
+                    this.rootcontainer.querySelector(".links_link").setAttribute("style", noneselectcss);
+
+                    noneselectcss = null;
+
+                    this.rootcontainer.querySelector("#Introduction_link_left").addEventListener("click", (function(){
+
+                        if (this.image_urlArray.length) {
+
+                            if (this.index !== 0) {
+
+                                this.index = this.index - 1;
+                                this.HTMLRender();
+                            }
+                        }
+                    }).bind(this));
+
+                    this.rootcontainer.querySelector("#Introduction_link_right").addEventListener("click", (function(){
+
+                        if (this.image_urlArray.length) {
+
+                            if (this.index !== (this.image_urlArray.length - 1)) {
+
+                                this.index = this.index + 1;
+                                this.HTMLRender();
+                            }
+                        }
+                    }).bind(this));
+                }
+
+                static MakeData(image_url, descript, link) {
+
+                    return {image_url, descript, link}
+                }
+
+                PutDatas(Datas) {
+
+                    Datas.forEach(e => {
+                        
+                        this.image_urlArray.push(e.image_url);
+                        this.descriptArray.push(e.descript);
+                        this.linkArray.push(e.link);
+                    });
+
+                    this.HTMLRender();
+                }
+
+                HTMLRender() {
+
+                    if (this.image_urlArray.length) {
+
+                        this.rootcontainer.querySelector(".images").innerHTML = "";
+
+                        if (this.image_urlArray[this.index]) {
+
+                            this.image_urlArray[this.index].forEach((function(Element){
+
+                                this.rootcontainer.querySelector(".images").appendChild((function(e,inf){e.setAttribute("src",inf); return e;})(document.createElement("img"), Element));
+                            }).bind(this));
+                        }
+
+                        this.rootcontainer.querySelector(".information").innerHTML = "";
+                        this.rootcontainer.querySelector(".information").appendChild((function(e,inf){e.innerHTML = inf; return e;})(document.createElement("pre"), this.descriptArray[this.index]));
+
+                        this.rootcontainer.querySelector(".links_link").innerHTML = "";
+
+                        if (this.linkArray[this.index]) {
+
+                            this.rootcontainer.querySelector(".links_link").appendChild((function(e,inf){e.setAttribute("href",inf); e.innerHTML = inf; e.target = "_blank"; return e;})(document.createElement("a"), this.linkArray[this.index]));
+                        } else {
+
+                            this.rootcontainer.querySelector(".links_link").appendChild((function(e,inf){e.setAttribute("href",inf); e.innerHTML = inf; return e;})(document.createElement("span"), "......"));
+                        }
+
+                        /*for (let i = 0; i < 4; i++) {
+
+                            setTimeout((function(){
+
+                                this.rootcontainer.querySelector(".images").setAttribute("style", `opacity: ${i % 2};`);
+                                this.rootcontainer.querySelector(".information").setAttribute("style", `opacity: ${i % 2};`);
+                                this.rootcontainer.querySelector(".links_link").setAttribute("style", `opacity: ${i % 2};`);
+                            }).bind(this) , 200*(i + 1));
+                        }*/
+                    }
+                }
+            }
+
+            let G = new IntroductionDataController("Introduction");
+
+            let DESCRIPTS = [];
+
+            DESCRIPTS[0] = `    小時候對電玩特別感興趣，喜歡自行創造物品(像彈珠檯)。而在小學的資訊課學了Scratch之後就愛上了編程語言。
+
+    就讀研究時，由於需要分析與後處理大量資料，使編寫程式的能力大幅提升！
+
+----前端應用----
+。HTML -熟悉
+。CSS -熟悉
+。JavaScript(jQuery, p5) -熟悉
+。React -正在學習
+
+----研究所資料處理----
+MATLAB -熟悉
+Excel vba -熟悉
+
+----興趣----
+gdScript (Godot 引擎) -基本
+lua (CSO online studio) -熟悉
+glsl (OpenGL Shading Language, Godot CanvasItem shader) -基本
+`;
+
+            DESCRIPTS[1] = `    這是第一個自行設計的形象網站，替網路上的朋友設計。
+
+    運用p5.js來快速建置Web GL，使用Shader使開頭畫面更有科技感。
+
+    -此網站建置在GitHub。`;
+
+            DESCRIPTS[2] = `    這是第一個用JavaScript製作的遊戲，使用HTML canvas元素的2D context來繪製畫面。
+
+    -此遊戲上傳到itch.io。`;
+
+            DESCRIPTS[3] = `    由於有想製作一個遊戲的想法，而意外探入Shader著色器的魅力，由於可以編寫GPU的程式碼，在每個像素中做出炫彩斑斕的效果。
+
+    由於2D相對好入手而醉心於此，加上對於工程數學有一定的認知程度，使用波形生成如左上圖和左下圖的效果。
+
+    但是，自己對於Shader著色器的認知還在初學者階段，很多機制尚未了解。`;
+
+            DESCRIPTS[4] = `    在就讀研究所時，被同學帶入CS online Studio，發現可以將lua腳本寫入地圖中，控制API中可使用的物品，例如生成怪物和在畫面顯示方塊。
+
+    由於想挑戰自訂義功能，API中UI顯示只提供方塊與文字(都限制1024個上限)，在這限制中製作類似背包的畫面，頗有成就感。`;
+
+            /*https://godotshaders.com/shader/healthmana-bar-in-ball-container-ver-2-1/*/
+            let DATAS = [
+                IntroductionDataController.MakeData(["https://scontent.fkhh4-1.fna.fbcdn.net/v/t39.30808-1/464333703_8375908195839801_3704595880280673081_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=Q4D1imki5EUQ7kNvwEB6j8K&_nc_oc=AdmKxBwVqt0FWfkbNHbzSevfSnva5qm9zoyUV31jfeRvYZPhFhBExS_jcaeCZKTq77MaHenL4552-HtQYGwbX8xJ&_nc_zt=24&_nc_ht=scontent.fkhh4-1.fna&_nc_gid=w90f9MuylHhioyWGmVfrnw&oh=00_AfSP2CZzMK4axvRhOIVa35TSJEITYdJUrycwBf9CfVYexw&oe=687044E9"],DESCRIPTS[0],""),
+                IntroductionDataController.MakeData(["https://iili.io/FYeMvLu.png"],DESCRIPTS[1],"https://nanvalue.github.io/ACDGX/"),
+                IntroductionDataController.MakeData(["https://img.itch.zone/aW1nLzIwMTk0Mzg1LmpwZw==/315x250%23c/9SFLco.jpg"],DESCRIPTS[2],"https://xcv145336.itch.io/canvas-tank/"),
+                IntroductionDataController.MakeData(["https://godotshaders.com/wp-content/uploads/2025/06/53-1.gif","https://godotshaders.com/wp-content/uploads/2025/04/26-1.gif"],DESCRIPTS[3],"https://godotshaders.com/shader/healthmana-bar-in-ball-container-ver-2-1/"),
+                IntroductionDataController.MakeData(["https://iili.io/FlgppTX.gif","https://iili.io/F0n7f9V.png"],DESCRIPTS[4],"https://cso.dn.nexoncdn.co.kr/vxlman/api/examples/tdm_game.lua.html"),/*cso*/
+            ];
+
+            DATAS.forEach(e => {
+
+                e.image_url.forEach(link => {
+
+                    new Promise((resolve, reject) => {
+
+                        let img = new Image();
+                        img.onload = () => resolve(img);
+                        img.onerror = () => reject(new Error(`error: ${link}`));
+                        img.src = link;});
+                });
+            });
+
+            G.PutDatas(DATAS);
+        </script>
+    </body>
+</html>
