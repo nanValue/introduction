@@ -21,14 +21,15 @@
                 background-color: var(--bc);
             }
 
-            span, button {
+            span, button, a {
 
                 color: rgb(255, 255, 0);
                 font-size: 30px;
                 text-shadow: 0 0 50px rgb(255, 255, 140),0 0 150px rgb(255, 255, 140),0 0 20px rgb(255, 255, 140);
+                text-align: center;
             }
 
-            nav .here, nav button:hover {
+            nav .here, nav button:hover, nav a:hover {
 
                 border-bottom: 1px yellow solid;
                 border-right: 1px yellow solid;
@@ -37,12 +38,17 @@
                 animation: dd 0.1s steps(2) 0s 2;
             }
 
+            nav a {
+
+                text-decoration: none;
+            }
+
             .aniy {
 
                 animation: neon_yellow 5s ease-out infinite;
             }
 
-            button {
+            button, a {
 
                 border: 0;
                 background-color: var(--bc);
@@ -338,8 +344,8 @@
 
             <div class = "flex fstart">
 
-                <button class = "width_1 aniy here" tabindex="-1"> 首頁 </button>
-                <button class = "width_1 aniy"  tabindex="-1"> 各種作品 </button>
+                <a class = "width_1 aniy here" tabindex="-1"> 首頁 </a>
+                <a class = "width_1 aniy"  tabindex="-1" href = "https://nanvalue.github.io/introduction_portfolio/"> 各種作品 </a>
             </div>
         </nav>
         <main>
