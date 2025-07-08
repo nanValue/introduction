@@ -6,6 +6,8 @@
         <meta charset = "UTF-8">
         <meta name = "viewport" content = "width=device-width,initial-scale=1.0">
 
+        <title>nan value Introduction</title>
+
         <style>
 
             :root {
@@ -363,9 +365,7 @@
                     </div>
                 </div>
 
-                <div class = "information">
-
-                </div>
+                <div class = "information"> </div>
 
                 <div class = "links">
 
@@ -378,7 +378,7 @@
             </div>
         </main>
 
-        <script>
+        <script >
 
             class IntroductionDataController {
 
@@ -422,6 +422,7 @@
                     this.image_urlArray = [];
                     this.descriptArray = [];
                     this.linkArray = [];
+                    this.titleArray = [];
 
                     this.index = 0;
 
@@ -463,9 +464,9 @@
                     }).bind(this));
                 }
 
-                static MakeData(image_url, descript, link) {
+                static MakeData(image_url = "", title = "", descript = "", link = "") {
 
-                    return {image_url, descript, link}
+                    return {image_url, title, descript, link}
                 }
 
                 PutDatas(Datas) {
@@ -475,6 +476,7 @@
                         this.image_urlArray.push(e.image_url);
                         this.descriptArray.push(e.descript);
                         this.linkArray.push(e.link);
+                        this.titleArray.push(e.title);
                     });
 
                     this.HTMLRender();
@@ -495,6 +497,7 @@
                         }
 
                         this.rootcontainer.querySelector(".information").innerHTML = "";
+                        this.rootcontainer.querySelector(".information").appendChild((function(e,inf){e.innerHTML = inf; e.setAttribute("style", "color: #ff0;text-align: center;"); return e;})(document.createElement("h1"), this.titleArray[this.index]));
                         this.rootcontainer.querySelector(".information").appendChild((function(e,inf){e.innerHTML = inf; return e;})(document.createElement("pre"), this.descriptArray[this.index]));
 
                         this.rootcontainer.querySelector(".links_link").innerHTML = "";
@@ -522,11 +525,15 @@
 
             let G = new IntroductionDataController("Introduction");
 
+            let TITLE = ["自我介紹", "實作經驗-形象網站設計", "實作經驗-JavaScript 遊戲製作", "實作經驗-Shader 著色器", "實作經驗-CSO Studio Lua 腳本"];
+
             let DESCRIPTS = [];
 
-            DESCRIPTS[0] = `    小時候對電玩特別感興趣，喜歡自行創造物品(像彈珠檯)。而在小學的資訊課學了Scratch之後就愛上了編程語言。
+            DESCRIPTS[0] = `    從小對電玩與自造物件（如彈珠台）特別感興趣，小學時在資訊課接觸 Scratch 後便開始熱愛程式設計。
 
-    就讀研究時，由於需要分析與後處理大量資料，使編寫程式的能力大幅提升！
+    就讀研究所期間，因需要分析與後處理大量資料，使我的程式能力大幅提升並更加紮實。
+
+程式技能
 
 ----前端應用----
 。HTML -熟悉
@@ -544,33 +551,33 @@ lua (CSO online studio) -熟悉
 glsl (OpenGL Shading Language, Godot CanvasItem shader) -基本
 `;
 
-            DESCRIPTS[1] = `    這是第一個自行設計的形象網站，替網路上的朋友設計。
+            DESCRIPTS[1] = `    首次獨立設計個人形象網站，替網友的遊戲團隊打造形象頁面。
 
-    運用p5.js來快速建置Web GL，使用Shader使開頭畫面更有科技感。
+    運用 p5.js 快速建置 WebGL，並透過 Shader 為開場畫面增添科技感。
 
     -此網站建置在GitHub。`;
 
-            DESCRIPTS[2] = `    這是第一個用JavaScript製作的遊戲，使用HTML canvas元素的2D context來繪製畫面。
+            DESCRIPTS[2] = `    第一個以 JavaScript 製作的 2D 遊戲，使用 HTML Canvas 元素與 2D context 繪製畫面。
 
     -此遊戲上傳到itch.io。`;
 
-            DESCRIPTS[3] = `    由於有想製作一個遊戲的想法，而意外探入Shader著色器的魅力，由於可以編寫GPU的程式碼，在每個像素中做出炫彩斑斕的效果。
+            DESCRIPTS[3] = `    因開發遊戲而開始接觸 Shader 著色器，嘗試以 GPU 程式碼在像素層面實現多彩炫麗的視覺效果。
 
-    由於2D相對好入手而醉心於此，加上對於工程數學有一定的認知程度，使用波形生成如左上圖和左下圖的效果。
+    目前以 2D Shader 為主，並結合工程數學基礎，生成如波形等特殊效果。
 
-    但是，自己對於Shader著色器的認知還在初學者階段，很多機制尚未了解。`;
+    -尚屬初學階段，持續學習進修中`;
 
-            DESCRIPTS[4] = `    在就讀研究所時，被同學帶入CS online Studio，發現可以將lua腳本寫入地圖中，控制API中可使用的物品，例如生成怪物和在畫面顯示方塊。
+            DESCRIPTS[4] = `    研究所期間透過同學介紹開始接觸 CS Online Studio，將 Lua 腳本應用於地圖開發，控制 API 提供的功能（如生成怪物、顯示物件）。
 
-    由於想挑戰自訂義功能，API中UI顯示只提供方塊與文字(都限制1024個上限)，在這限制中製作類似背包的畫面，頗有成就感。`;
+    在有限的 UI 元素（最多 1024 個文字與方塊）下，自行設計類似背包的自訂介面並成功實作，獲得成就感`;
 
             /*https://godotshaders.com/shader/healthmana-bar-in-ball-container-ver-2-1/*/
             let DATAS = [
-                IntroductionDataController.MakeData(["https://scontent.fkhh4-1.fna.fbcdn.net/v/t39.30808-1/464333703_8375908195839801_3704595880280673081_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=Q4D1imki5EUQ7kNvwEB6j8K&_nc_oc=AdmKxBwVqt0FWfkbNHbzSevfSnva5qm9zoyUV31jfeRvYZPhFhBExS_jcaeCZKTq77MaHenL4552-HtQYGwbX8xJ&_nc_zt=24&_nc_ht=scontent.fkhh4-1.fna&_nc_gid=w90f9MuylHhioyWGmVfrnw&oh=00_AfSP2CZzMK4axvRhOIVa35TSJEITYdJUrycwBf9CfVYexw&oe=687044E9"],DESCRIPTS[0],""),
-                IntroductionDataController.MakeData(["https://iili.io/FYeMvLu.png"],DESCRIPTS[1],"https://nanvalue.github.io/ACDGX/"),
-                IntroductionDataController.MakeData(["https://img.itch.zone/aW1nLzIwMTk0Mzg1LmpwZw==/315x250%23c/9SFLco.jpg"],DESCRIPTS[2],"https://xcv145336.itch.io/canvas-tank/"),
-                IntroductionDataController.MakeData(["https://godotshaders.com/wp-content/uploads/2025/06/53-1.gif","https://godotshaders.com/wp-content/uploads/2025/04/26-1.gif"],DESCRIPTS[3],"https://godotshaders.com/shader/healthmana-bar-in-ball-container-ver-2-1/"),
-                IntroductionDataController.MakeData(["https://iili.io/FlgppTX.gif","https://iili.io/F0n7f9V.png"],DESCRIPTS[4],"https://cso.dn.nexoncdn.co.kr/vxlman/api/examples/tdm_game.lua.html"),/*cso*/
+                IntroductionDataController.MakeData(["https://scontent.fkhh4-1.fna.fbcdn.net/v/t39.30808-1/464333703_8375908195839801_3704595880280673081_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=Q4D1imki5EUQ7kNvwEB6j8K&_nc_oc=AdmKxBwVqt0FWfkbNHbzSevfSnva5qm9zoyUV31jfeRvYZPhFhBExS_jcaeCZKTq77MaHenL4552-HtQYGwbX8xJ&_nc_zt=24&_nc_ht=scontent.fkhh4-1.fna&_nc_gid=w90f9MuylHhioyWGmVfrnw&oh=00_AfSP2CZzMK4axvRhOIVa35TSJEITYdJUrycwBf9CfVYexw&oe=687044E9"],TITLE[0],DESCRIPTS[0],""),
+                IntroductionDataController.MakeData(["https://iili.io/FYeMvLu.png"],TITLE[1],DESCRIPTS[1],"https://nanvalue.github.io/ACDGX/"),
+                IntroductionDataController.MakeData(["https://img.itch.zone/aW1nLzIwMTk0Mzg1LmpwZw==/315x250%23c/9SFLco.jpg"],TITLE[2],DESCRIPTS[2],"https://xcv145336.itch.io/canvas-tank/"),
+                IntroductionDataController.MakeData(["https://godotshaders.com/wp-content/uploads/2025/06/53-1.gif","https://godotshaders.com/wp-content/uploads/2025/04/26-1.gif"],TITLE[3],DESCRIPTS[3],"https://godotshaders.com/shader/healthmana-bar-in-ball-container-ver-2-1/"),
+                IntroductionDataController.MakeData(["https://iili.io/FlgppTX.gif","https://iili.io/F0n7f9V.png"],TITLE[4],DESCRIPTS[4],"https://cso.dn.nexoncdn.co.kr/vxlman/api/examples/tdm_game.lua.html"),/*cso*/
             ];
 
             DATAS.forEach(e => {
@@ -587,6 +594,8 @@ glsl (OpenGL Shading Language, Godot CanvasItem shader) -基本
             });
 
             G.PutDatas(DATAS);
+
+            TITLE, DESCRIPTS = null;
         </script>
     </body>
 </html>
